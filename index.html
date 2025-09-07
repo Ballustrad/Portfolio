@@ -417,26 +417,25 @@ On the design side, I structure mechanics, difficulty, level design, and in-game
 
     // Contact form: mailto fallback
     document.getElementById('contactForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const status = document.getElementById('formStatus');
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim() || "Message depuis le portfolio";
-      const message = document.getElementById('message').value.trim();
-      const to = document.getElementById('CONTACT_EMAIL').value.trim();
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim() || "Message depuis le portfolio";
+    const message = document.getElementById('message').value.trim();
+    const to = document.getElementById('CONTACT_EMAIL').value.trim();
 
-      if(!name || !email || !message){
+    if(!name || !email || !message){
         status.textContent = "Error, some fields are empty or incorrect.";
         return;
-      }
-      if(!to || to.includes("exemple.com")){
-        // mailto
-        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
-        const mailto = `mailto:${encodeURIComponent(to || "votre.email@exemple.com")}?subject=${encodeURIComponent(subject)}&body=${body}`;
-        window.location.href = mailto;
-        status.textContent = "Ouverture de votre client mail… Remplacez l’adresse dans CONTACT_EMAIL.";
-        return;
-      }
+    }
+
+    // mailto
+    const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+    const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = mailto;
+    status.textContent = "Opening your email client...";
+
 
       // Exemple d’envoi HTTP via un service (à brancher si besoin)
       // fetch("https://formspree.io/f/TON_ID", {
