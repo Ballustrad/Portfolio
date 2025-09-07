@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ethan Charbonniere — Game Developer & Game Designer</title>
+  <meta name="description" content="Portfolio d’Ethan Charbonniere, game developer et game designer : projets, compétences et contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0d13'/%3E%3Ctext x='50%25' y='56%25' font-size='28' font-weight='700' font-family='Inter,system-ui' text-anchor='middle' fill='%23ffffff'%3EEC%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg:#0b0d13;
+      --surface:#121624;
+      --surface-2:#0f1424;
+      --text:#e7e9ee;
+      --muted:#a0a7b5;
+      --primary:#8b5cf6; /* violet */
+      --primary-2:#22d3ee; /* cyan */
+      --accent:#f472b6; /* rose */
+      --ring: rgba(139,92,246,.35);
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+      --container: 1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; scroll-padding-top: 90px;}
+    @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif;
+      color:var(--text); background:linear-gradient(180deg,#0b0d13 0%,#0b0d13 40%,#0e1220 100%);
+      line-height:1.6;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    .container{width:min(var(--container),92%); margin-inline:auto}
+
+    /* Header */
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(11,13,19,.62);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:24px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; letter-spacing:.2px}
+    .brand-badge{
+      width:44px; height:44px; border-radius:9px; display:grid; place-items:center;
+      background: radial-gradient(120px 120px at 20% 20%, rgba(139,92,246,.9), transparent 60%),
+                  radial-gradient(120px 120px at 80% 80%, rgba(34,211,238,.9), transparent 60%),
+                  #111424;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+      color:#fff; font-weight:700; font-size:16px;
+    }
+    nav ul{display:flex; gap:8px; list-style:none; margin:0; padding:0}
+    .nav-btn{
+      padding:8px 14px; border-radius:999px; border:1px solid transparent; font-weight:600; font-size:14px;
+      transition:.2s ease; color: #eaeef8;
+    }
+    .nav-btn:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.08)}
+    .nav-btn[aria-current="true"]{
+      background:linear-gradient(90deg,var(--primary),var(--primary-2));
+      color:#0b0d13; box-shadow:0 2px 18px rgba(139,92,246,.35);
+    }
+    .menu-toggle{display:none}
+    @media (max-width:780px){
+      .header-inner{flex-wrap:wrap; gap:10px}
+      .menu-toggle{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); color:#eaeef8}
+      nav{width:100%}
+      nav ul{flex-wrap:wrap}
+    }
+
+    /* Hero video */
+    .hero{padding:30px 0 10px}
+    .video-wrap{
+      position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+      background:linear-gradient(135deg, rgba(139,92,246,.25), rgba(34,211,238,.15));
+      border:1px solid rgba(255,255,255,.06);
+    }
+    video.demo{
+      width:100%; height:auto;max-height: 80vh;   object-fit:contain; 
+      filter:saturate(1.08) contrast(1.05);
+      background:#0b0d13;
+    }
+   
+
+    /* Sections */
+    section{padding:50px 0}
+    h2.section-title{
+      font-family:"Space Grotesk",Inter,sans-serif; font-size:28px; margin:0 0 20px; letter-spacing:.2px
+    }
+    p.lead{color:var(--muted); margin-top:6px}
+
+    /* Projects */
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns:repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 4;
+      background:linear-gradient(180deg, rgba(17,20,36,.85), rgba(12,15,28,.9));
+      border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:12px;
+      transition:.18s ease transform, .18s ease box-shadow; box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .card:hover{transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.35)}
+    .thumb {
+      position: relative;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      background:
+        radial-gradient(160px 120px at 14% 20%, rgba(139,92,246,.35), transparent 65%),
+        radial-gradient(160px 120px at 90% 90%, rgba(34,211,238,.25), transparent 65%),
+        #0e1323;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* joli recadrage pour une vignette homogène */
+      display: block;
+    }
+    .card h3{margin:4px 0 0; font-size:18px}
+    .card p{margin:0; color:#c8cedd; font-size:14px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .tag{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.09); color:#cbd3e6; background:rgba(255,255,255,.03)}
+    .card a.btn{
+      align-self:flex-start; margin-top:auto; padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04); color:#e8ecf8; font-weight:600; font-size:14px;
+    }
+    .card a.btn:hover{background:linear-gradient(90deg, rgba(139,92,246,.2), rgba(34,211,238,.2)); border-color:rgba(139,92,246,.35)}
+
+    /* About */
+    .about{
+      display:grid; grid-template-columns: 320px 1fr; gap:24px; align-items:start;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+      border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:20px
+    }
+    .portrait{
+      width:100%; max-width:320px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+    }
+    .portrait img{width:100%; height:100%; object-fit:cover; display:block}
+    .about h3{margin:0 0 10px; font-size:22px; font-family:"Space Grotesk",Inter,sans-serif}
+    .about p{margin:0 0 10px; color:#cbd3e6}
+    ul.inline{list-style:none; padding:0; margin:8px 0 0; display:flex; flex-wrap:wrap; gap:8px}
+    ul.inline li{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); color:#d6dcef}
+
+    /* Contact */
+    .contact{
+      display:grid; grid-template-columns: 1fr 1fr; gap:20px; align-items:start
+    }
+    form{
+      background:linear-gradient(180deg, rgba(17,20,36,.9), rgba(11,13,19,.95));
+      border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:18px; box-shadow: var(--shadow)
+    }
+    label{display:block; font-size:13px; color:#cbd3e6; margin:6px 0 6px}
+    input, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; background:#0f1424; border:1px solid rgba(255,255,255,.09); color:#e8ecf8; font:inherit;
+      outline:none; transition:.15s ease box-shadow, .15s ease border-color;
+    }
+    input:focus, textarea:focus{ box-shadow: 0 0 0 4px var(--ring); border-color: rgba(139,92,246,.5) }
+    textarea{min-height:130px; resize:vertical}
+    .actions{display:flex; gap:10px; align-items:center; margin-top:10px}
+    button.primary{
+      padding:10px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:linear-gradient(90deg,var(--primary),var(--primary-2));
+      color:#0b0d13; font-weight:800; cursor:pointer
+    }
+    .note{color:#aab3c7; font-size:12px}
+
+    /* Footer */
+    footer{padding:24px 0; color:#aab3c7; border-top:1px solid rgba(255,255,255,.06)}
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03); font-size:13px}
+    .pill:hover{background:rgba(255,255,255,.06)}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .card{grid-column: span 6}
+      .about{grid-template-columns: 1fr}
+      .portrait{max-width:240px}
+    }
+    @media (max-width:720px){
+      .grid{grid-template-columns: repeat(1,1fr)}
+      .card{grid-column:auto}
+      .contact{grid-template-columns: 1fr}
+      video.demo{height: 54vh}
+    }
+
+    /* Focus visible for a11y */
+    :focus-visible{outline: 2px solid var(--primary); outline-offset: 3px; border-radius:6px}
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Aller à l’accueil">
+        <span class="brand-badge">EC</span>
+        <span>Ethan Charbonniere</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">Menu</button>
+
+      <nav id="mainNav" aria-label="Navigation principale">
+        <ul>
+          <li><a class="nav-btn" href="#home" data-nav="home">Home</a></li>
+          <li><a class="nav-btn" href="#projects" data-nav="projects">Project</a></li>
+          <li><a class="nav-btn" href="#about" data-nav="about">About Me</a></li>
+          <li><a class="nav-btn" href="#contact" data-nav="contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME / Vidéo démo -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="video-wrap">
+          <video class="demo" autoplay loop muted playsinline controls poster="" aria-label="Vidéo démo">
+            <source src= assets/Demo.mp4 type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+          </video>
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+<section id="projects" aria-label="Projets">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <p class="lead">Une sélection de travaux — prototypes, mécaniques de gameplay et expériences interactives.</p>
+
+    <div class="grid">
+      <!-- Project Card 1 -->
+      <article class="card">
+        <div class="thumb">
+          <img src="assets/Spark.png" alt="Aperçu Spark" loading="lazy">
+        </div>
+        <h3>Spark</h3>
+        <p>In Spark, a top-down 3D rogue-lite, take control of a combat robot and face endless waves of enemies. Adapt, strategize, and unleash powerful skills to push your survival to the limit.</p>
+        <div class="tags">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+          <span class="tag">Game Designer</span>
+          <span class="tag">Developer</span>
+        </div>
+        <a class="btn" href="https://onemorerollstudio.itch.io/spark" target="_blank" rel="noopener noreferrer">See more</a>
+      </article>
+
+      <!-- Project Card 2 -->
+      <article class="card">
+        <div class="thumb">
+          <img src="assets/UU.png" alt="Aperçu Uplifting Utopia" loading="lazy">
+        </div>
+        <h3>Uplifting Utopia</h3>
+        <p>Dive into Uplifting Utopia, a fast-paced roguelike FPS where 3 minute rounds of nonstop action push you to survive waves of enemies and upgrade your skills. Can you conquer all 7 thrilling stages?</p>
+        <div class="tags">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+          <span class="tag">Game Designer</span>
+          <span class="tag">Developer</span>
+        </div>
+        <a class="btn" href="https://matthieu-fabritius.itch.io/uplifting-utopia" target="_blank" rel="noopener noreferrer">See more</a>
+      </article>
+
+      <!-- Project Card 3 -->
+      <article class="card">
+        <div class="thumb">
+          <img src="assets/Ygg.png" alt="Aperçu Echo Arena" loading="lazy">
+        </div>
+        <h3>Yggdrasil’s Guardian</h3>
+        <p>Become Heimdall in Yggdrasil’s Guardian and defend the World Tree from Norse creatures! Gather resources, unlock runes, and harness powerful abilities to protect its roots in an ever-changing world.</p>
+        <div class="tags">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+          <span class="tag">GameJam</span>
+          <span class="tag">Developer</span>
+        </div>
+        <a class="btn" href="https://kri3lft.itch.io/yggdrasilsguardian" target="_blank" rel="noopener noreferrer">See more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- ABOUT ME -->
+    <section id="about" aria-label="À propos">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about">
+          <div class="portrait">
+            <!-- Remplace l’image ci-dessous par une vraie photo si tu veux (ex: assets/photo.jpg) -->
+            <img alt="Photo de Ethan Charbonniere" src= "assets/pp.jpg">
+          </div>
+
+          <div>
+            <h3>Ethan Charbonniere — Game Developer & Game Designer</h3>
+            <p>
+              My name is Ethan Charbonniere, I’m a game developer and designer with a Bachelor’s degree in Game Design and Creative Coding from E-Artsup Lyon (2025). 
+              Passionate about crafting unique gameplay experiences, I have a particular love for roguelike and roguelite games.
+            </p>
+            <p>
+              On the technical side, I handle gameplay code, systems, asset integration, and editor tools.
+On the design side, I structure mechanics, difficulty, level design, and in-game UX.
+            </p>
+
+            <ul class="inline" aria-label="Skills">
+              <li>Unity / C#</li>
+              <li>Unreal / Blueprint</li>
+              <li>Prototypage rapide</li>
+              <li>Level design</li>
+              <li>Game Design</li>
+              <li>UI/UX in‑game</li>
+              <li>Git</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact">
+          <form id="contactForm" novalidate>
+            <!-- Remplace par ton email pour le mode "mailto" -->
+            <input type="hidden" id="CONTACT_EMAIL" value= ethancharbonniere@gmail.com>
+
+            <div>
+              <label for="name">Nom</label>
+              <input id="name" name="name" type="text" placeholder="Your Name" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div>
+              <label for="subject">Sujet</label>
+              <input id="subject" name="subject" type="text" placeholder="Subject">
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Type here ..." required></textarea>
+            </div>
+            <div class="actions">
+              <button class="primary" type="submit">Send</button>
+              
+            </div>
+            <div id="formStatus" class="note" role="status" aria-live="polite"></div>
+          </form>
+
+          <div>
+            <p class="lead">Interested in collaborating on a project, prototype, or jam? Get in touch</p>
+            <div class="socials" style="margin-top:10px">
+              <a class="pill" href="#" aria-label="Itch.io">itch.io</a>
+              <a class="pill" href="#" aria-label="GitHub">GitHub</a>
+              <a class="pill" href="#" aria-label=" LinkedIn">LinkedIn</a>
+              
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Ethan Charbonniere. All Rights Reserved.</div>
+      
+    </div>
+  </footer>
+
+  <script>
+    // Active link update on scroll
+    const sections = ["home","projects","about","contact"].map(id => document.getElementById(id));
+    const navLinks = new Map([...document.querySelectorAll('.nav-btn')].map(a => [a.dataset.nav, a]));
+    const setActive = (id) => {
+      navLinks.forEach((el, key) => el.setAttribute('aria-current', key===id ? 'true':'false'));
+    };
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          setActive(e.target.id);
+        }
+      });
+    }, {rootMargin: "-40% 0px -55% 0px", threshold: 0.01});
+    sections.forEach(s => io.observe(s));
+
+    // Mobile menu (simple wrap)
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    if(menuToggle){
+      menuToggle.addEventListener('click', () => {
+        const open = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!open));
+        mainNav.style.display = open ? "" : "block";
+      });
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form: mailto fallback
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || "Message depuis le portfolio";
+      const message = document.getElementById('message').value.trim();
+      const to = document.getElementById('CONTACT_EMAIL').value.trim();
+
+      if(!name || !email || !message){
+        status.textContent = "Error, some fields are empty or incorrect.";
+        return;
+      }
+      if(!to || to.includes("exemple.com")){
+        // mailto
+        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+        const mailto = `mailto:${encodeURIComponent(to || "votre.email@exemple.com")}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        window.location.href = mailto;
+        status.textContent = "Ouverture de votre client mail… Remplacez l’adresse dans CONTACT_EMAIL.";
+        return;
+      }
+
+      // Exemple d’envoi HTTP via un service (à brancher si besoin)
+      // fetch("https://formspree.io/f/TON_ID", {
+      //   method: "POST",
+      //   headers: {"Content-Type":"application/json"},
+      //   body: JSON.stringify({name, email, subject, message})
+      // }).then(r => {
+      //   if(r.ok){ status.textContent = "Merci ! Message bien envoyé."; e.target.reset(); }
+      //   else { status.textContent = "Une erreur est survenue. Réessaie plus tard."; }
+      // }).catch(()=> status.textContent="Impossible d’envoyer pour le moment.");
+    });
+  </script>
+</body>
+</html>
